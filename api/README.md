@@ -1,6 +1,6 @@
 # Test
 
-- SEND MESSAGE
+- Call Producer
 
     ```text
     curl --location 'http://localhost:3000/sendmessage' \
@@ -9,6 +9,12 @@
         "id": 1, 
         "message": "ok 123"
     }'
+    ```
+
+- Init consumer
+
+    ```text
+    curl --location 'http://localhost:3000/process/queue/hello-queue'
     ```
 
 - Start separate RabbitMQ
