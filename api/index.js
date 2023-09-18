@@ -1,12 +1,29 @@
 'use strict';
 
-const express = require('express');
+import express from 'express';
 const app = express();
-const port = 3000;
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+const port = process.env.NODE_ENV = "local" ? 3001 : 3000;
+
+import { producer } from './service.js';
+
+app.post('/sendmessage', (req, res) => {
+    try {
+        producer('hello-queue', JSON.stringify(req.body));
+
+        res.json({
+            message: 'queue message.'
+        });
+    } catch (error) {
+        res.send(error);
+    }
+});
 
 app.get('/', (req, res) => {
     res.send('Hello World!');
-})
+});
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);

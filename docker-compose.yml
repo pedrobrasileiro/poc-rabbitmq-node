@@ -1,4 +1,4 @@
-version: '3'
+version: '3.8'
 
 services:
   rabbitmq:
@@ -14,7 +14,6 @@ services:
     volumes:
       # data persistence
       - /docker_conf/rabbitmq/data/:/var/lib/rabbitmq/
-
     restart: always
 
   api:
@@ -24,7 +23,6 @@ services:
     container_name: api
     environment:
       - TZ=America/Fortaleza
-
     restart: unless-stopped
     ports:
       - "3000:3000"
