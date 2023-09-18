@@ -1,6 +1,6 @@
 import amqp from 'amqplib';
 
-const url = 'amqp://admin:admin@localhost?heartbeat=5s';
+const url = process.env.RABBITMQ_URL + "?heartbeat=5s";
 
 export const producer = async (queue, msg) => {
     try {

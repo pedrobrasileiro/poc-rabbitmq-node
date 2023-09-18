@@ -5,7 +5,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const port = process.env.NODE_ENV = "local" ? 3001 : 3000;
+const port = process.env.NODE_ENV == "local" ? 3001 : 3000;
 
 import { consumer, producer } from './service.js';
 
@@ -35,7 +35,9 @@ app.get('/process/queue/:queue', (req, res) => {
 });
 
 app.get('/', (req, res) => {
-    res.send('Hello World!');
+    res.json({
+        message: 'Hi'
+    });
 });
 
 app.listen(port, () => {
